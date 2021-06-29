@@ -1,0 +1,80 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "file a report",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "WhatHappened",
+          "slots": [
+            {
+              "name": "detail",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "I saw {detail}"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "IssueType",
+          "slots": [
+            {
+              "name": "type",
+              "type": "AMAZON.SearchQuery"
+            },
+            {
+              "name": "typeid",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "Select {typeid}",
+            "Select {type}"
+          ]
+        },
+        {
+          "name": "Information",
+          "slots": [
+            {
+              "name": "lastname",
+              "type": "AMAZON.US_FIRST_NAME"
+            },
+            {
+              "name": "firstname",
+              "type": "AMAZON.US_FIRST_NAME"
+            },
+            {
+              "name": "number",
+              "type": "AMAZON.PhoneNumber"
+            }
+          ],
+          "samples": [
+            "FirstName {firstname} LastName {lastname} PhoneNumber {number}"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "17"
+}
