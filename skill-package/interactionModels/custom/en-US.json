@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "file a report",
+      "invocationName": "create case",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -41,14 +41,9 @@
             {
               "name": "type",
               "type": "AMAZON.SearchQuery"
-            },
-            {
-              "name": "typeid",
-              "type": "AMAZON.NUMBER"
             }
           ],
           "samples": [
-            "Select {typeid}",
             "Select {type}"
           ]
         },
@@ -56,25 +51,17 @@
           "name": "Information",
           "slots": [
             {
-              "name": "lastname",
-              "type": "AMAZON.US_FIRST_NAME"
-            },
-            {
-              "name": "firstname",
-              "type": "AMAZON.US_FIRST_NAME"
-            },
-            {
               "name": "number",
               "type": "AMAZON.PhoneNumber"
             }
           ],
           "samples": [
-            "FirstName {firstname} LastName {lastname} PhoneNumber {number}"
+            "Phone {number}"
           ]
         }
       ],
       "types": []
     }
   },
-  "version": "17"
+  "version": "22"
 }
