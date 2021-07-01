@@ -1,9 +1,5 @@
 
 const Alexa = require('ask-sdk-core');
-const AWS = require('aws-sdk');
-var https = require('https');
-const dbHelper = require('./helpers/dbHelper');
-const dynamoDBTableName = "Alexa_CreateCase";
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -11,27 +7,11 @@ const LaunchRequestHandler = {
     },
 
  async handle(handlerInput) {
-     let speakOutput = '';
-     return dbHelper.getMovies(1)
-      .then((data) => {
-        var speechText = "Your movies are "
-        if (data.length === 0) {
-          speechText = "You do not have any favourite movie yet, add movie by saving add moviename "
-        } else {
-          speechText += data.map(e => e.movieTitle).join(", ")
-        }
-       return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt(speechText)
-            .getResponse();
-      })
-      .catch((err) => {
-        const speechText = "we cannot get your movie right now. Try again!"
-        return handlerInput.responseBuilder
-          .speak(speechText)
-          .getResponse();
-      })
-       
+     let speakOutput = 'Welcome, What happened?';
+     return handlerInput.responseBuilder
+     .speak(speakOutput)
+     .reprompt(speakOutput)
+     .getResponse();
     }
 };
 
@@ -43,7 +23,7 @@ const WhatHappenedIntentHandler = {
     handle(handlerInput) {
         const {requestEnvelope} = handlerInput;
         const whatHappenedText = Alexa.getSlotValue(requestEnvelope,'detail');
-        const speakOutput = 'Which issue type best represents your concerns?';
+        const speakOutput = 'Select issue type 0 for Other 2 for Conflict of Interest';
         
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.whatHappenedText = whatHappenedText;
@@ -64,7 +44,7 @@ const IssueTypeIntentHandler = {
     handle(handlerInput) {
         const {requestEnvelope} = handlerInput;
         const selectedIssueType = Alexa.getSlotValue(requestEnvelope,'type');
-        const speakOutput = 'Your Information please';
+        const speakOutput = 'Your Phone Number please';
         
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.selectedIssueType = selectedIssueType;
@@ -94,9 +74,7 @@ const InformationIntentHandler = {
         sessionAttributes.number = number;
         handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         
-        const speakOutput=''
-        //const speakOutput = sessionAttributes.whatHappenedText + sessionAttributes.selectedIssueType + sessionAttributes.firstname+ sessionAttributes.lastname+ sessionAttributes.number;
-
+        const speakOutput='Case will be created shortly and the details will be shared to Phone Number';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
